@@ -9,15 +9,15 @@
        
 2-  Download project from Github
 
-       * change in properties file where you want to store file
-      i.e:
+       * change in properties file where you want to store files
+	 i.e:
         ExcelFilePath=/home/folderName/workbook.xls
         FileUrl=/home/folderName/tempWorkbook.xls
         RootTagName=cell value
          
 3- AWS Credentials 
 
-      AWSCredentials credentials = new BasicAWSCredentials(String accessKey,String secretKey);
+			AWSCredentials credentials = new BasicAWSCredentials(String accessKey,String secretKey);
 			AmazonS3 client = new AmazonS3Client();
 			AmazonS3 s3Client = new AmazonS3Client(credentials, config);
 			S3Object s3object = s3Client.getObject(new GetObjectRequest(bucketName, key));
@@ -27,7 +27,7 @@
 			
 4-  Working with the Convert CSV File into Excel File
 
-    HSSFWorkbook wb = new HSSFWorkbook();
+		HSSFWorkbook wb = new HSSFWorkbook();
 		try {
 			HSSFSheet sheet = wb.createSheet("new sheet");
 			CSVReader reader = new CSVReader(new InputStreamReader(input));
@@ -46,7 +46,7 @@
 			
 5-  Searching with given cell value
 
-    if (searchText != null) {
+   				if (searchText != null) {
 				// Iterate rows
 				for (int j = 0; j <= sheet.getLastRowNum(); j++) {
 					HSSFRow row = sheet.getRow(j);
@@ -107,34 +107,35 @@
 7-  Woking with Sheet Formate/Cell Formate and add row value into arrayList on the basis of cell value and write row value another Excel File
 
 
-          HSSFWorkbook finalWorkSpace = new HSSFWorkbook();
+  		HSSFWorkbook finalWorkSpace = new HSSFWorkbook();
 	      	HSSFSheet newSheet = finalWorkSpace.createSheet("MonthlyBillingReport");
 	      	//newSheet.setDefaultRowHeight((short) 0);
-		      newSheet.setColumnWidth((short) 0, (short) 20000);
+		newSheet.setColumnWidth((short) 0, (short) 20000);
 	      	HSSFFont font = finalWorkSpace.createFont();
-		      font.setColor(HSSFFont.COLOR_RED);
+		font.setColor(HSSFFont.COLOR_RED);
 	      	// font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
-		      HSSFCellStyle cellStyle = finalWorkSpace.createCellStyle();
-          cellStyle.setFont(font);
+		HSSFCellStyle cellStyle = finalWorkSpace.createCellStyle();
+          	cellStyle.setFont(font);
 	      	cellStyle.setFillForegroundColor(HSSFColor.LIGHT_YELLOW.index);
-		      cellStyle.setBorderBottom((short) 1);
-		      cellStyle.setFillPattern(cellStyle.SOLID_FOREGROUND);
-		      cellStyle.setBorderBottom(cellStyle.BORDER_THIN);
+		cellStyle.setBorderBottom((short) 1);
+		cellStyle.setFillPattern(cellStyle.SOLID_FOREGROUND);
+		cellStyle.setBorderBottom(cellStyle.BORDER_THIN);
 	      	try {
-		  	  HashMap<Object, Object[]> map = new HashMap<Object, Object[]>();
-		  	  for (int k = 0; k < list.size(); k++) {
-				  map.put(k, list.get(k));
+		 HashMap<Object, Object[]> map = new HashMap<Object, Object[]>();
+		  	  
+		  	for (int k = 0; k < list.size(); k++) {
+			 map.put(k, list.get(k));
 		    	}
-			    Set<Object> entry = map.keySet();
+		 Set<Object> entry = map.keySet();
 		      int rownum = 0;
-			    for (Object key : entry) {
-				  // Creating a new Row in existing XLSX sheet
-			  	HSSFRow row = newSheet.createRow(rownum++);
-			  	Object[] objArr = (Object[]) map.get(key);
-			  	int cellnum = 0;
-			  	for (Object obj : objArr) {
-					HSSFCell cell = row.createCell((short) cellnum++);
-					cell.setCellStyle(cellStyle);
+			for (Object key : entry) {
+			// Creating a new Row in existing XLSX sheet
+			HSSFRow row = newSheet.createRow(rownum++);
+			Object[] objArr = (Object[]) map.get(key);
+			int cellnum = 0;
+			for (Object obj : objArr) {
+			HSSFCell cell = row.createCell((short) cellnum++);
+			cell.setCellStyle(cellStyle);
 					if (obj instanceof String) {
 						cell.setCellValue((String) obj);
 					} else if (obj instanceof Boolean) {
@@ -147,7 +148,9 @@
 				  }
 			    }
 		    	// open an OutputStream to save written data into
-			   os = new FileOutputStream(new File(prop.getProperty("FileUrl")));
-			   finalWorkSpace.write(os);
-			   logger.info("Writing on XLSX file Finished ...!:)");
-			  ********************************************XXXXX***************************************
+			os = new FileOutputStream(new File(prop.getProperty("FileUrl")));
+			finalWorkSpace.write(os);
+			logger.info("Writing on XLSX file Finished ...!:)");
+			
+			
+		********************************************XXXXX***************************************
