@@ -43,17 +43,17 @@ import au.com.bytecode.opencsv.CSVReader;
 
 public class AWSBillingReport {
 	private static Logger logger = Logger.getLogger(AWSBillingReport.class);
-	private static String bucketName = "cdms-billing";	
+	private static String bucketName = "*****************";	
 	static Date date = new Date();
 	static ISO8601DateFormat iso = new ISO8601DateFormat();
 	static String isoDate = iso.format(date);
 	static String subDate = isoDate.substring(0, 7);
-	private static String key = "110844866120-aws-cost-allocation-" + subDate + ".csv";
+	private static String key = "112252525-aws-cost-allocation-" + subDate + ".csv";
 	static Properties prop = new Properties();
 	static {
 		InputStream input;
 		try {
-			input = new FileInputStream("/home/sagar/Desktop/path.properties");
+			input = new FileInputStream("/home/********/path.properties");
 			if (input != null) {
 				try {
 					prop.load(input);
@@ -75,8 +75,8 @@ public class AWSBillingReport {
 			ClientConfiguration config = new ClientConfiguration();
 			System.out.println(config.getSocketTimeout());
 			config.setSocketTimeout(180000);
-			AWSCredentials credentials = new BasicAWSCredentials("AKIAJU5HJ37N3P3OT4DA",
-					"QMsji8bwryuZa1zTv1+5nI9BxBCdSEgjann+LCat");
+			AWSCredentials credentials = new BasicAWSCredentials("*************",
+					"************************************");
 			AmazonS3 client = new AmazonS3Client();
 			AmazonS3 s3Client = new AmazonS3Client(credentials, config);
 			S3Object s3object = s3Client.getObject(new GetObjectRequest(bucketName, key));

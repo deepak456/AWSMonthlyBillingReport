@@ -10,9 +10,9 @@ import javax.activation.*;
 public class EmailSender {
 	static Logger logger = Logger.getLogger(EmailSender.class);
 		public static void emailSender(String fileUrl) {
-				String to="deepak.kumar@agamitechnologies.com";//change accordingly babul@1stdatasolutions.com 
-			  final String userName="ms.deepak456@gmail.com";//change accordingly  
-			  final String password="8651632077";//change accordingly 
+				String to="*********************";//change accordingly  
+			  final String userName="*****************";//change accordingly  
+			  final String password="************";//change accordingly 
 			  String host = "smtp.gmail.com";
 		      String port = "587";
 			   
